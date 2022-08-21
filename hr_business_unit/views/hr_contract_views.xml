@@ -6,12 +6,12 @@
         <field name="model">hr.contract</field>
         <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
         <field name="arch" type="xml">
-            <field name="name" position="before">
+            <xpath expr="//h2/field[@name='company_id']/.." position="before">
                 <field name="business_unit_id"
                 	   options="{'no_create': True}"
                        domain="[('user_ids', 'in', uid)]"
                        groups="business_unit.group_multi_business_unit"/>
-            </field>
+            </xpath>
         </field>
     </record>
 

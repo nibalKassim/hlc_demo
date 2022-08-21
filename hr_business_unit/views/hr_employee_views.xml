@@ -20,12 +20,12 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <field name="name" position="before">
+            <xpath expr="//sheet//div[hasclass('oe_title')]/h1[hasclass('d-flex')]" position="after">
                 <field name="business_unit_id"
                 	   options="{'no_create': True}"
                        domain="[('user_ids', 'in', uid)]"
                        groups="business_unit.group_multi_business_unit"/>
-            </field>
+            </xpath>
         </field>
     </record>
 
