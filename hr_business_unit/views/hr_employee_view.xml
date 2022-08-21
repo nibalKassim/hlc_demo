@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_employee_tree_business_unit" model="ir.ui.view">
+        <field name="name">view.employee.tree.business_unit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="business_unit_id"
+                	   options="{'no_create': True}"
+                       domain="[('user_ids', 'in', uid)]"
+                       groups="business_unit.group_multi_business_unit"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_employee_form_business_unit" model="ir.ui.view">
+        <field name="name">view.employee.form.business_unit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="business_unit_id"
+                	   options="{'no_create': True}"
+                       domain="[('user_ids', 'in', uid)]"
+                       groups="business_unit.group_multi_business_unit"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

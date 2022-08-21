@@ -16,9 +16,9 @@
     ],
     'external_dependencies' : {},
     'data': [
-        'security/sale_security.xml',
-        'views/sale_views.xml',
-        'views/sale_report_view.xml',       
+        'security/hr_security.xml',
+        'views/hr_employee_views.xml',
+        'views/hr_contract_view.xml',
     ],
     'demo': [],
     'application':False,
