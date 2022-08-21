@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_business_unit_form" model="ir.ui.view">
+        <field name="name">business.unit.form</field>
+        <field name="model">business.unit</field>
+        <field name="arch" type="xml">
+            <form string="Business Unit" >
+            	 <sheet>
+            	 	<field name="active" invisible="1"/>
+            	 	<widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            	    <div class="oe_button_box" name="button_box">
+
+                    </div>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Business Unit Name"/>
+                        <h1><field name="name" placeholder="Business Unit Name"/></h1>
+                    </div>
+
+                    <notebook>
+                        <page string="General Information" name="general_information">
+                            <group>
+                                <group name="group_general">
+                                	<field name="parent_id" options="{'no_create': True}"
+                                			 groups="business_unit.group_multi_business_unit"/>
+				                     <field name="code"/>
+				                    <field name="partner_id"/>
+				                    <field name="company_id" groups="base.group_multi_company"/>
+				                </group>
+				               <group>
+				                	<field name="sale_sequence_id"/>
+				                </group> 
+				            </group>
+				         </page>
+				         <page string="Users" name="users">
+				         	<group name="default_users" string="Default BU for User(s)">
+				         		<div>
+				         		<field name="default_user_ids" widget="many2many" 
+                            domain="['|',('default_business_unit_id','=',False),('default_business_unit_id', '=', active_id)]"/>
+                            </div>
+				         	</group>
+				         	<group name="allowed_users" string="Allowed Users">
+	                            <div>
+	                            	<field name="user_ids"/>
+	                            </div>
+				         	</group>
+                         </page>
+<!--                          <page string="Sale Teams" name="sale_teams"> -->
+<!--                             <field name="crm_team_ids" widget="many2many"  -->
+<!--                             domain="['|',('business_unit_id','=',False),('business_unit_id', '=', active_id)]"/> -->
+<!--                          </page> -->
+<!--                          <page string="Journals" name="journals"> -->
+<!--                             <field name="journal_ids" widget="many2many" -->
+<!--                             domain="['|',('business_unit_id','=',False),('business_unit_id', '=', active_id)]"/> -->
+<!--                          </page>     -->
+				         <page string="Report" name="report">
+				         	<group name="main_report">
+				         		<field name="is_bu_report" string="BU Report"/>
+				         	</group>
+				         	<group attrs="{'invisible':[('is_bu_report','=',False)]}">
+				         		<field name="report_tagline" widget="char" />
+				         		<field name="report_footer" />
+				         	</group>
+				         	<group attrs="{'invisible':[('is_bu_report','=',False)]}">
+				         		<field name="is_bu_header"/>
+				         		<field name="report_header" attrs="{'invisible':[('is_bu_header','=',False)]}"/>
+				         	</group>
+                         </page>	         
+				     </notebook>				                
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_business_unit_tree" model="ir.ui.view">
+        <field name="name">business.unit.tree</field>
+        <field name="model">business.unit</field>
+        <field name="arch" type="xml">
+            <tree string="Business Unit">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_business_unit_search" model="ir.ui.view">
+        <field name="name">business.unit.search</field>
+        <field name="model">business.unit</field>
+        <field name="arch" type="xml">
+            <search string="Search Business Unit">
+                <field name="name" string="Business Unit"/>
+                <field name="code" string="Code"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_business_unit_tree" model="ir.actions.act_window">
+        <field name="name">Business Units</field>
+        <field name="res_model">business.unit</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to start a new Business Unit.
+          </p>
+        </field>
+    </record>
+
+   <menuitem action="action_business_unit_tree"
+             id="menu_action_business_unit_tree"
+             parent="base.menu_users"/>
+</odoo>

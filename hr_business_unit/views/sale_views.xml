@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_quotation_tree_bu" model="ir.ui.view">
+        <field name="name">sale.order.tree.bu</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="business_unit_id"
+                       groups="business_unit.group_multi_business_unit"
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree_bu" model="ir.ui.view">
+        <field name="name">sale.order.tree.bu</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="business_unit_id"
+                       groups="business_unit.group_multi_business_unit"
+                       optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form_bu" model="ir.ui.view">
+        <field name="name">sale.order.form.bu</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority" eval="35"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="business_unit_id" 
+                	   options="{'no_create': True}"
+                       domain="[('user_ids', 'in', uid)]"
+                       groups="business_unit.group_multi_business_unit"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_bu" model="ir.ui.view">
+        <field name="name">sale.order.list.select.bu</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <filter name="group_by_business_unit" string="Business Unit" domain="[]"
+                        groups="business_unit.group_multi_business_unit" context="{'group_by':'business_unit_id'}"/>
+            </filter>
+            <field name="partner_id" position="after">
+                <field name="business_unit_id" groups="business_unit.group_multi_business_unit"/>
+            </field>
+        </field>
+    </record>
+</odoo>

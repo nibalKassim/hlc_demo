@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_report_search" model="ir.ui.view">
+        <field name="name">sale.report.search</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id"
+               ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="business_unit_id" groups="business_unit.group_multi_business_unit"/>
+            </field>
+            <filter name="year" position="after">
+                <filter name='group_by_business_unit'
+                        string="Business Unit"
+                        context="{'group_by':'business_unit_id'}"
+                        groups="business_unit.group_multi_business_unit"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

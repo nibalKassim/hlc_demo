@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="crm_team_salesteams_search_bu" model="ir.ui.view">
+        <field name="name">Case Teams - Search</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_salesteams_search"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="business_unit_id" groups="business_unit.group_multi_business_unit"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="crm_team_view_form_bu" model="ir.ui.view">
+        <field name="name">crm.team.form</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="business_unit_id" groups="business_unit.group_multi_business_unit"
+                       domain="[('company_id','=', company_id),
+                       ('user_ids', 'in', uid)]" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="crm_team_view_tree_bu" model="ir.ui.view">
+        <field name="name">crm.team.tree</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id"
+               ref="sales_team.crm_team_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="business_unit_id" groups="business_unit.group_multi_business_unit"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

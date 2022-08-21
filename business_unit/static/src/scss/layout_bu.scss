@@ -1,0 +1,132 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap'); */
+
+.o_bu_footer, .o_bu_header, .o_report_layout_bu, .o_report_custom_bu {
+    font-family:'Tajawal', 'Noto','Lato';
+    color: gray('700');
+}
+
+
+.o_report_custom_bu {
+    min-width: 900px;
+    .logo {
+        max-height: 150px;
+        max-width: 300px;
+        margin-right: 20px;
+    }
+    .b-border {
+        border-bottom: 1px solid $o-brand-odoo;
+    }
+}
+.o_bu_header {
+    min-width: 900px;
+    border-bottom: 1px solid $o-brand-odoo;
+    img {
+        max-height: 96px;
+        max-width: 300px;
+        margin-right: 20px;
+    }
+    h3 {
+        color: $o-brand-odoo;
+        font-weight: 700;
+        font-size: 1.25rem;
+        max-width: 300px;
+    }
+    
+    div:nth-of-type(2){
+    	min-width: 300px;
+    }
+}
+.o_bu_footer {
+	.list-inline-item {
+        white-space: nowrap;
+    }
+    .footer-lines{
+        border-top: 1px solid $o-brand-odoo;
+        border-bottom: 1px solid $o-brand-odoo;
+/*         border-left: 1px solid $o-brand-odoo; */
+    }
+    ul {
+		padding: 4px 0;
+        margin: 0 0 4px 0;
+        li {
+            color: $o-brand-odoo;
+        }
+    }
+    .pagenumber {
+        border: 2px solid $o-brand-odoo;
+        background-color: $o-brand-odoo;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        margin-bottom: 0px;
+    }  
+}
+.o_report_layout_bu {
+    	
+    h1, h2, h3 {
+        color: $o-brand-primary;
+        font-weight: bolder;
+    }
+    strong {
+        color: $o-brand-odoo;
+    }
+
+    .o_main_table {
+    	box-shadow:  0 0 5px rgba(30, 29, 29, 0.14);
+    	th, td{
+			border: 1px solid gray('400') !important;    
+    	}
+	    thead tr th {
+	        background-color: rgba(124, 123, 173, 0.25) !important 	  
+	    }
+	    thead tr th, h2 {
+	        color: $o-brand-odoo;
+	    }
+	    tbody {
+	        color: gray('700');
+	        tr {
+	            &:nth-child(odd) {
+	                background-color: rgba(220, 205, 216, 0.2);
+	            }
+	            &.o_line_section {
+	                color: $o-brand-odoo;
+	                background-color: rgba(73, 80, 87, 0.2) !important;
+	            }
+	        }
+    }
+    }
+    /*Total table*/
+    /* row div rule compat 12.0 */
+    .row > div > table,
+    div#total table {
+        td, th {
+        	border-top: none;
+    	}
+        tr {
+            &:nth-child(odd) {
+                background-color: transparent !important;
+            }
+            /* first-child & last-child rule compat 12.0 */
+            &:first-child,
+            &.o_subtotal {
+                td {
+	                border-top: none !important;
+                    color: $o-brand-odoo;
+                }
+            }
+            &.o_total {
+            	td{
+                	border-top: 1px solid gray('400') !important;
+                	color: $o-brand-odoo;
+            	}
+            }
+        }
+    }
+}
+
+/* special case for displaying report in iframe */
+.o_in_iframe {
+    .o_bu_header {
+        min-width: 0;
+    }
+}

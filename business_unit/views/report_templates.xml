@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_business_unit" name="External Layout Business Unit">
+        <div class="header">
+            <div t-if="bu.is_bu_header" class="o_report_custom_bu">
+                <t t-raw="bu.report_header"/>
+            </div> 
+            <div t-if="not bu.is_bu_header" class="o_bu_header">
+                <div class="float-right">
+                    <h3 class="mt0 text-left" t-field="bu.report_tagline"/>
+                </div>
+                <img t-if="bu.partner_id.image_256" t-att-src="image_data_uri(bu.partner_id.image_256)" class="float-left" alt="Logo"/>
+                <div class="float-right company_address">
+                    <div>
+                        <strong t-field="bu.partner_id.name"/>
+                    </div>
+                    <span t-field="bu.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                </div>
+                <div class="clearfix mb8"/>
+            </div>
+        </div>        
+        
+        <div t-attf-class="article o_report_layout_boxed o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div t-attf-class="footer o_background_footer o_company_#{company.id}_layout">
+            <div class="footer-lines">
+                <div class="row">
+                        <ul class="list-inline text-center col-12">
+    <!--                         <li class="list-inline-item"><i><span t-field="company.partner_id" t-options='{"widget": "contact", "fields": ["address"]}'/></i></li> -->
+                            <li t-if="bu.partner_id.phone" class="list-inline-item"><i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"/> <span t-field="bu.partner_id.phone"/></li>
+                            <li t-if="bu.partner_id.mobile" class="list-inline-item"><i class="fa fa-mobile" role="img" aria-label="Mobile" title="Mobile"/> <span t-field="bu.partner_id.mobile"/></li>
+                            <li t-if="bu.partner_id.email" class="list-inline-item"><i class="fa fa-at" role="img" aria-label="Email" title="Email"/> <span t-field="bu.partner_id.email"/></li>
+                            <li t-if="bu.partner_id.website" class="list-inline-item"><i class="fa fa-globe" role="img" aria-label="Website" title="Website"/> <span t-field="bu.partner_id.website"/></li>
+                        </ul>
+                </div>
+            </div>
+            <div class="row" t-if="bu.report_footer">
+                <div class="col-11" t-raw="bu.report_footer">
+                </div>                
+            </div>
+            <div t-if="report_type == 'pdf'" class="text-muted text-right">
+                    <t t-if="o.name">(<span t-field="o.name"/>)</t>
+                    Page:
+                    <span class="page"/>
+                    of
+                    <span class="topage"/>
+            </div>
+        </div>        
+    </template>
+
+    <template id="external_layout_bu_inherit" inherit_id="web.external_layout">
+        <xpath expr="//t[@t-if='company.external_report_layout_id']" position="replace">
+            <t t-if="o and 'business_unit_id' in o.fields_get()">
+                <t t-set="bu" t-value="o.business_unit_id"/>
+            </t>
+            <t t-if="not bu ">
+                <t t-set="bu" t-value="user_id.default_business_unit_id"/>
+            </t>
+            <t t-if="bu and bu.is_bu_report" t-call="business_unit.external_layout_business_unit">
+                <t t-raw="0"/>
+            </t>
+            <t t-elif="company.external_report_layout_id" t-call="{{company.external_report_layout_id.key}}">
+                <t t-raw="0"/>
+            </t>
+        </xpath>
+    </template>   
+</odoo>
