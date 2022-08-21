@@ -18,7 +18,7 @@
 	<!-- Contract Record Rule -->
 	<!-- ============================ -->
     <record id="ir_rule_contract_allowed_business_units" model="ir.rule">
-        <field name="model_id" ref="hr.model_hr_contract"/>
+        <field name="model_id" ref="hr.model_hr_hr_contract"/>
         <field name="domain_force">['|',('business_unit_id','=',False),('business_unit_id','in', user.business_unit_ids.ids)]</field>
         <field name="name">Contracts from allowed business units</field>
         <field name="global" eval="True"/>
