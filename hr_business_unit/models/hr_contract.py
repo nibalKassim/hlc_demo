@@ -4,8 +4,8 @@ from odoo import api, fields, models, SUPERUSER_ID, _
 from odoo.exceptions import UserError
 
 
-class HrEmployeePrivate(models.Model):
-    _inherit = 'hr.employee'
+class HrContract(models.Model):
+    _inherit = 'hr.contract'
 
     business_unit_id = fields.Many2one(
         comodel_name='business.unit',
