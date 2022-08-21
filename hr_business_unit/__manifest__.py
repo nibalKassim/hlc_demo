@@ -2,9 +2,9 @@
 # Inspired from OCA Operating Units
 
 {
-    'name': "TMICT - Sale Business Unit",
+    'name': "TMICT - HR Business Unit",
     'summary': """
-        Sale Business Unit within a company.""",
+        HR Business Unit within a company.""",
     'description': "",
     'author': "Shahzad Ali",
     'website': "http://www.tmict.com",
@@ -17,9 +17,7 @@
     'external_dependencies' : {},
     'data': [
         'security/sale_security.xml',
-        # 'security/crm_team_security.xml',
-        # 'views/crm_team_view.xml',
-        'views/sale_views.xml',        
+        'views/sale_views.xml',
         'views/sale_report_view.xml',       
     ],
     'demo': [],
