@@ -18,7 +18,7 @@
     'data': [
         'security/hr_security.xml',
         'views/hr_employee_views.xml',
-        'views/hr_contract_view.xml',
+        'views/hr_contract_views.xml',
     ],
     'demo': [],
     'application':False,
