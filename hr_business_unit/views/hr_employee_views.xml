@@ -6,7 +6,7 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_tree"/>
         <field name="arch" type="xml">
-            <field name="partner_id" position="before">
+            <field name="work_email" position="after">
                 <field name="business_unit_id"
                 	   options="{'no_create': True}"
                        domain="[('user_ids', 'in', uid)]"
@@ -20,7 +20,7 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <field name="partner_id" position="before">
+            <field name="name" position="before">
                 <field name="business_unit_id"
                 	   options="{'no_create': True}"
                        domain="[('user_ids', 'in', uid)]"
