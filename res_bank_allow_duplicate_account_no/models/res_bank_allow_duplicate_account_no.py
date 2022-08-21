@@ -18,4 +18,4 @@ class ResPartnerBank(models.Model):
         self._sql_constraints = [
             ('unique_number', 'unique(sanitized_acc_number, bank_id, company_id)', 'Account Number must be unique')
         ]
-          super(ResPartnerBank, self)._auto_init(cr, context)
+        super(ResPartnerBank, self)._auto_init(cr, context)
