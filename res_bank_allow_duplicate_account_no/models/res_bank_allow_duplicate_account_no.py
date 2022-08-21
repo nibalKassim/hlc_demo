@@ -14,7 +14,8 @@ import werkzeug.urls
 class ResPartnerBank(models.Model):
     _name = 'res.partner.bank'
 
-    _sql_constraints = [
-        ('unique_number', 'unique(sanitized_acc_number, bank_id, company_id)', 'Account Number must be unique'),
-    ]
-
+    def _auto_init(self, cr, context=None):
+        self._sql_constraints = [
+            ('unique_number', 'unique(sanitized_acc_number, bank_id, company_id)', 'Account Number must be unique')
+        ]
+          super(ResPartnerBank, self)._auto_init(cr, context)
