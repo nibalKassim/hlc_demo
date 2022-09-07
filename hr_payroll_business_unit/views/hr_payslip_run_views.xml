@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_payslip_run_form_business_unit" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.business.unit</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//group" position="afetr">
+                <group>
+                    <field name="business_unit_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
