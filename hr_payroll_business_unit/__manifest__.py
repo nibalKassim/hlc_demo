@@ -11,10 +11,12 @@
     'category': 'TMICT',
     'version': '15.0.1.0.0',
     'depends': [
+        'business_unit',
         'hr_payroll',
     ],
     'external_dependencies' : {},
     'data': [
+        # 'views/hr_payroll_payslip_by_employees_views.xml',
         'views/hr_payslip_run_views.xml',
     ],
     'demo': [],
